@@ -44,7 +44,7 @@
       <a class="nav-link" tabindex="0">EXPERTISES</a>
       <div class="dropdown">
         <a href="expertise-data-ia.html">Data &amp; IA</a>
-        <a href="expertise-developpement.html">Développement</a>
+        <a href="expertise-developpement.html">R&D</a>
         <a href="expertise-technique.html">Expertise Technique</a>
         <a href="expertise-metier-ia.html">Expertise Métier &amp; IA</a>
       </div>
@@ -64,7 +64,7 @@
 </header>
 
 <section class="contact-section">
-  <form class="contact-form" action="https://formsubmit.co/guinandjean@gmail.com" method="POST">
+  <form class="contact-form" id="contact-form" action="https://formsubmit.co/guinandjean@gmail.com" method="POST">
     <input type="hidden" name="_subject" value="Nouveau message depuis le site G2M">
     <input type="hidden" name="_template" value="table">
     <input type="hidden" name="_captcha" value="false">
@@ -100,7 +100,42 @@
     <p class="form-note">* Champs obligatoires</p>
     <button type="submit" class="cta-button">Envoyer le message</button>
   </form>
+
+  <div class="contact-confirmation" id="contact-confirmation" hidden>
+    <p>Votre message a bien été envoyé. Merci, nous vous répondrons rapidement.</p>
+    <p class="contact-confirmation-note">Retour à l'accueil dans quelques secondes...</p>
+  </div>
 </section>
+
+<script>
+(function(){
+  var form = document.getElementById('contact-form');
+  var confirmation = document.getElementById('contact-confirmation');
+  if(!form) return;
+
+  form.addEventListener('submit', function(event){
+    event.preventDefault();
+    var data = new FormData(form);
+
+    fetch('https://formsubmit.co/ajax/guinandjean@gmail.com', {
+      method: 'POST',
+      headers: {'Accept': 'application/json'},
+      body: data
+    }).then(function(response){
+      if(!response.ok){ throw new Error('Envoi impossible'); }
+      return response.json();
+    }).then(function(){
+      form.hidden = true;
+      confirmation.hidden = false;
+      setTimeout(function(){
+        window.location.href = 'index.html';
+      }, 4000);
+    }).catch(function(){
+      form.submit();
+    });
+  });
+})();
+</script>
 
 <footer class="site-footer">
   <div class="footer-inner">

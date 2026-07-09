@@ -208,6 +208,28 @@ Composant ajouté pour `partenaires.html` et `certifications.html` (logos extern
 - **`.partner-logo`** : plaque **blanche** (exception délibérée à la palette sombre V2, au même titre que `.final-cta .cta-button` — nécessaire ici car la plupart des logos externes sont sur fond transparent et illisibles posés directement sur le fond sombre du site), `border-radius:var(--radius)`, `box-shadow:var(--shadow-sm)`, hover = léger soulèvement. L'image à l'intérieur est centrée et cadrée en `object-fit:contain`.
 - **`.card-logo`** : variante plus légère, une simple image (hauteur 64px, centrée, `object-fit:contain`) posée directement en haut d'une `.card` existante, sans plaque blanche — réservée aux logos déjà auto-porteurs sur fond sombre (badges circulaires type Qualiopi/Bpifrance/CIR). À utiliser uniquement quand le logo lui-même a déjà un fond opaque/coloré suffisant pour rester lisible sur une carte sombre ; sinon préférer `.partner-logo`.
 
+### À propos — valeurs, chiffres-clés, équipe (`a-propos.html`)
+Composants repris de la maquette CSS fournie séparément pour cette page (fond de bannière dégradé, halos plein cadre, bordures animées) — deux exceptions de couleur ponctuelles (`#2B2F37`, dans `.page-header--wide` et `.intro-banner`) s'ajoutent à `#0078D4` dans la liste des HEX documentés hors palette.
+- **`.page-header--wide`** : bannière plein cadre (`max-width:none`) avec dégradé `--color-dark → #2B2F37 → --color-primary` + deux halos radiaux + filets `border-top/bottom` ; `h1` en `--color-primary`, `.intro`/`.hero-tagline--home` en blanc.
+- **`.method-intro--sm-title`** : `h2` ramené à `clamp(22px,2.8vw,34px)` ; combiné avec elle, `.method-intro p` passe en `--color-primary`.
+- **`.audience-section--accent-intro`** : le paragraphe d'intro passe en `--color-primary` ; le `h2` réduit sa marge basse à 8px.
+- **`.cards--light`** : cartes en plaque translucide claire (`rgba(255,255,255,.35)`), `.card-subtitle` centré/majuscules, `.card-text` blanc justifié — pour les 3 cartes de valeurs.
+- **`.value-icon-frame` / `.value-icon`** : photo circulaire 140px, remontée en chevauchement au-dessus de la carte (`margin-top` négatif), entourée d'un anneau conique animé (`@property --ring-angle`, 0°→360° au hover de la carte).
+- **`.card--border-draw`** (+ `@property --card-border-angle`) : liseré conique (`conic-gradient` masqué en anneau) qui se "dessine" de 0° à 360° au survol (1.6s ease). Combiné à `.card--full` (via `.card--full.card--border-draw`, absent de `.card--full` de `diagnostic.html`) : fond `#212C40`, `card-subtitle` 21px, `card-text`/`g2m-list` en blanc semi-gras, image non-logo en 320px max arrondie.
+- **`.stats-row`** (+ `.card--border-draw`, `--card-border-draw-radius:0px`) : bandeau plein cadre 4 colonnes (2/1 sous 700/420px), plaque `rgba(255,255,255,.35)` sans arrondi ; `.stat-number` (Montserrat 700, `clamp(44px,5.2vw,68px)`, `--color-primary`) + `.stat-label` (Inter 600, 14px, blanc).
+- **`.team-grid`** : flexbox centré, cartes en `flex-basis` 1/3 (2 sous 700px, 1 sous 520px). **`.team-card`** : dégradé teinté primary→surface, bordure `rgba(primary,.40)`. `.team-card-top` (photo + titre, colonne sous 480px), `.team-photo` (130px, cercle), `.team-card h3`, `.team-role` (italique, majuscules, `--color-gray`), `.team-expertise`, `.team-link` (texte simple `--color-primary` → `--color-secondary`). `.team-group-title` centré au-dessus de chaque groupe (marge haute plus large pour le premier).
+
+### Développement — bandeau intro, expertises, méthodologie, gages de confiance (`developpement.html`)
+Même origine que la section À propos ci-dessus (maquette CSS dédiée) ; nécessite `<body class="page-developpement">` pour scoper les redéfinitions de `.diag-intro` sans affecter `diagnostic.html` / `expertise-data-ia.html` / `expertise-metier-ia.html` (qui utilisent `.diag-intro.diag-intro--compact`, non touché).
+- **`.intro-banner`** : bandeau plein cadre, fond dégradé `--color-dark → #2B2F37 → --color-primary`, texte (55%) + photo (40%, `max-width:460px`), colonne sous 900px.
+- **`body.page-developpement .diag-intro`** : panneau sans encadré (texte centré directement sur le fond de page) — `.overline` devient le grand titre blanc, `h2` devient un sous-titre bleu 16px.
+- **`.cards--expertise .card`** : hauteur uniforme (355px min), plaque `rgba(255,255,255,.40)`, texte blanc avec ombre portée. `.expertise-icon` : médaillon circulaire blanc 76px en bas à droite de la carte (translation au hover) ; `.expertise-icon--transparent` retire la plaque. `.expertise-icon-fx` (+ `.eifx-line`, `.eifx-dot(--a/--b/--c)`) : effet "réseau de données" (traits en `stroke-dashoffset`, points lumineux, rotation 7s) qui n'apparaît qu'au survol de la carte.
+- **`.methodology`** : parcours horizontal de 6 `.milestone` reliés par des `.milestone-connector` (empilés, connecteurs masqués sous 900px). `.milestone-circle` (96px) reste neutre (gris) au repos et ne passe en `--color-primary` qu'en `.is-active` (ajouté au survol par `js/methodology.js`, avec rotation `.milestone-num.is-spinning`).
+- **`.paves--spaced`** : marge supérieure additionnelle (`--spacing-section`).
+- **`.paves--linked`** : au survol (ou `.pave.is-linked`, ajouté par `js/pave-links.js`), un `.pave-connector` SVG au-dessus de la carte se "dessine" (`stroke-dashoffset` séquencé) jusqu'à un nœud final `--end` qui pulse en continu.
+- **`.pave-badge`** : badge circulaire 104px avec animation d'entrée et léger zoom au survol de la carte — alternative à `.pave-link` pour une carte qui se termine par un visuel plutôt qu'un lien.
+- **`.pave-desc--justify`** : variante de `.pave-desc` en `text-align:justify`.
+
 ---
 
 ## Fond de page (image + voile)
