@@ -2,6 +2,12 @@
   var root = document.querySelector('.hero-logo-reveal');
   if (!root) return;
 
+  // Le logo est visible par défaut en CSS ; on ne le repasse à l'état
+  // "prêt à animer" (clip-path:0%) qu'une fois certain que ce script
+  // s'exécute réellement, pour ne jamais rester bloqué invisible si JS
+  // est désactivé ou si ce fichier échoue à charger.
+  root.classList.add('js-armed');
+
   function revealInstantly() {
     root.classList.add('is-revealed');
   }

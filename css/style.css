@@ -839,6 +839,16 @@ body.nav-open{
   width:100%;
   height:100%;
   object-fit:contain;
+}
+
+/* Le logo est visible par défaut (voir juste au-dessus) : ce n'est que si
+   js/hero-logo-reveal.js s'exécute réellement, en ajoutant .js-armed au
+   tout début du script, qu'il repasse à clip-path:0% pour préparer
+   l'animation. Si le script est bloqué, échoue à charger ou si JS est
+   désactivé, le logo reste simplement affiché en statique — pas besoin
+   d'un <noscript> séparé, ce mécanisme couvre aussi le cas où seul ce
+   script précis est bloqué (JS activé par ailleurs). */
+.hero-logo-reveal.js-armed .hero-logo-reveal-img{
   clip-path:circle(0% at 50% 50%);
 }
 
