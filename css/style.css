@@ -650,6 +650,7 @@ img{max-width:100%;}
 
 .nav-panel .dropdown a{
   padding:12px 14px;
+  text-align:center;
 }
 
 body.nav-open{
