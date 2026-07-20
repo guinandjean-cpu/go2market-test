@@ -4665,6 +4665,133 @@ body.page-a-propos .page-header--wide{
   margin-top:var(--spacing-title-text);
 }
 
+/* ---------- Bandeau "LinkedIn G2M", en tête des profils d'équipe ----------
+   Reprend l'identité visuelle de .team-card (fond dégradé, bordure, radius,
+   ombre, hover) mais en encadré rectangulaire pleine largeur (icône à
+   gauche, texte au centre, lien à droite) plutôt qu'en carte verticale à
+   avatar débordant. Toute la carte est un lien unique vers la page
+   LinkedIn de l'entreprise. Largeur calée au pixel près sur la ligne des 3
+   cartes de profils juste en dessous (mesure réelle du DOM via
+   js/team-linkedin-align.js, recalculée au resize — la largeur ci-dessous
+   n'est qu'un repli avant exécution du script/si JS est désactivé).
+   Apparition au scroll dédiée (fondu + translateY 20px, 0.6s ease-out, une
+   seule fois) via js/team-linkedin-reveal.js. */
+.team-linkedin-section{
+  padding:0 24px;
+  margin:0 auto var(--spacing-title-text);
+}
+
+.team-card--linkedin{
+  display:flex;
+  align-items:center;
+  gap:24px;
+  width:960px;
+  max-width:100%;
+  margin:0 auto;
+  background:linear-gradient(165deg, rgba(var(--color-primary-rgb),0.62) 0%, rgba(var(--color-primary-rgb),0.34) 45%, rgba(var(--color-surface-rgb),0.97) 100%);
+  border:1px solid rgba(var(--color-primary-rgb),0.40);
+  border-radius:var(--radius);
+  padding:28px 32px;
+  box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,0.04);
+  text-decoration:none;
+  cursor:pointer;
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity 0.6s ease-out, transform 0.6s ease-out, border-color 0.25s ease, box-shadow 0.25s ease;
+  box-sizing:border-box;
+}
+
+.team-linkedin-section.is-inview .team-card--linkedin{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.team-card--linkedin:hover{
+  border-color:rgba(var(--color-primary-rgb),0.30);
+  box-shadow:var(--shadow-hover);
+}
+
+.team-linkedin-icon-wrap{
+  flex:none;
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  background:var(--color-white);
+  box-shadow:0 12px 28px rgba(0,0,0,0.4);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.team-linkedin-icon{
+  width:28px;
+  height:28px;
+  fill:var(--color-primary);
+}
+
+.team-linkedin-body{
+  flex:1;
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  text-align:left;
+}
+
+.team-linkedin-title{
+  font-family:var(--font-heading);
+  font-weight:700;
+  font-size:20px;
+  color:var(--color-white);
+}
+
+.team-linkedin-text{
+  font-family:var(--font-body);
+  font-weight:400;
+  font-size:13px;
+  line-height:1.6;
+  color:var(--text-on-dark);
+  margin-top:6px;
+}
+
+.team-linkedin-link{
+  flex:none;
+  margin-top:0;
+  padding-top:0;
+}
+
+.team-card--linkedin:hover .team-link,
+.team-card--linkedin:focus-visible .team-link{
+  color:var(--color-white);
+  gap:11px;
+}
+
+.team-card--linkedin:hover .team-link-arrow,
+.team-card--linkedin:focus-visible .team-link-arrow{
+  transform:translateX(0);
+}
+
+@media (max-width:600px){
+  .team-card--linkedin{
+    flex-wrap:wrap;
+    padding:24px;
+  }
+  .team-linkedin-body{
+    flex-basis:100%;
+    text-align:center;
+    align-items:center;
+  }
+  .team-linkedin-icon-wrap{
+    margin:0 auto;
+  }
+  .team-linkedin-link{
+    margin:4px auto 0;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .team-card--linkedin{transition:border-color 0.25s ease, box-shadow 0.25s ease; opacity:1; transform:none;}
+}
+
 /* ===================================================================
    "G2M en chiffres" — bandeau indicateurs (index.html)
    Fond bleu nuit hérité de body{} (pas de bande blanche comme .stats-row
