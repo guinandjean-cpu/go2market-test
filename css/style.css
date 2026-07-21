@@ -11348,4 +11348,18 @@ body.page-nous-rejoindre .final-cta.section-gap-lg{
   body.page-home .funding-item p{
     font-size:11px;
   }
+
+  /* Bouton "Découvrir les dispositifs de financement" : width:max-content
+     (règle .cta-button partagée par tout le site, non modifiée) le
+     laissait déborder du cadre sur mobile avec ce texte long. */
+  body.page-home .funding-cta{
+    width:auto;
+    max-width:100%;
+    box-sizing:border-box;
+    padding:14px 18px;
+    font-size:12px;
+    white-space:normal;
+    text-align:center;
+    justify-content:center;
+  }
 }
