@@ -8451,7 +8451,7 @@ body.page-developpement .diag-intro h2{
 }
 
 .format-card:hover{
-  filter:brightness(1.25);
+  filter:brightness(1.55);
   border-color:rgba(var(--color-primary-rgb),0.4);
   transform:translateY(-4px);
 }
