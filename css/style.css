@@ -10776,3 +10776,53 @@ body.page-nous-rejoindre .final-cta.section-gap-lg{
     justify-content:center;
   }
 }
+
+/* ===================================================================
+   Textes d'introduction sous le titre principal (hero) — justifiés en
+   MOBILE UNIQUEMENT, sur toutes les pages du site qui en possèdent un.
+   Le titre principal n'est pas touché (aucun sélecteur h1 ci-dessous) ;
+   seule l'introduction passe de centré/hérité à justifié. La version
+   desktop reste strictement inchangée : aucune règle existante n'est
+   modifiée, uniquement de nouvelles règles ajoutées sous ce media query.
+   text-align-last:left évite que la toute dernière ligne du texte soit
+   étirée de façon disgracieuse (même convention que .method-intro
+   p.intro--justify, déjà utilisé ailleurs sur le site).
+   =================================================================== */
+@media (max-width:768px){
+
+  /* Pattern commun .page-header .intro (a-propos, contact,
+     expertise-data-ia, expertise-metier-ia, expertise-technique,
+     formation, formation-initiation-ia, page_template, references,
+     cas-usages, et les pages avec le modificateur .intro--justify :
+     approche, nous-rejoindre, partenaires, certifications). */
+  .page-header .intro,
+  .page-header .intro.intro--justify{
+    text-align:justify;
+    text-align-last:left;
+  }
+
+  /* Pages cas d'usage (cas-usage-*.html) : hero à deux colonnes,
+     description déjà alignée à gauche sur desktop, non centrée. */
+  .uc-hero-desc{
+    text-align:justify;
+    text-align-last:left;
+  }
+
+  /* R&D (expertise-developpement.html). */
+  .rd-hero-lead{
+    text-align:justify;
+    text-align-last:left;
+  }
+
+  /* Diagnostic (diagnostic.html). */
+  .diag2-hero-text p{
+    text-align:justify;
+    text-align-last:left;
+  }
+
+  /* Développement (developpement.html). */
+  .intro-banner-text p{
+    text-align:justify;
+    text-align-last:left;
+  }
+}
